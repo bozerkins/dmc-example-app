@@ -39,8 +39,12 @@ jQuery(function ($) {
 	};
 
 	var App = {
+
+		todos: null,
+
 		init: function () {
-			this.todos = util.store('todos-jquery');
+			// this.todos = util.store('todos-jquery');
+			this.todos = [];
 			this.todoTemplate = Handlebars.compile($('#todo-template').html());
 			this.footerTemplate = Handlebars.compile($('#footer-template').html());
 			this.bindEvents();
@@ -51,6 +55,11 @@ jQuery(function ($) {
 					this.render();
 				}.bind(this)
 			}).init('/all');
+
+            $.post('server/list.php', (function(result) {
+                this.todos = result;
+                this.render();
+            }).bind(this));
 		},
 		bindEvents: function () {
 			$('#new-todo').on('keyup', this.create.bind(this));

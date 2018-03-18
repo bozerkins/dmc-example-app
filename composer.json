@@ -1,0 +1,6 @@
+{
+    "name": "bozerkins/dmc-example-app",
+    "require": {
+        "bozerkins/data-management-components": "^0.0.1"
+    }
+}
