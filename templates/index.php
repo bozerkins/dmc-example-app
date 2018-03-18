@@ -127,6 +127,20 @@
 
 </script>
 <div class="container">
+    <?php if (array_key_exists('message_good', $_SESSION)) : ?>
+    <div class="row">
+        <div class="alert alert-success">
+            <strong>Success!</strong>  <?php echo $_SESSION['message_good']; unset($_SESSION['message_good']); ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if (array_key_exists('message_bad', $_SESSION)) : ?>
+    <div class="row">
+        <div class="alert alert-danger">
+            <strong>Error!</strong> <?php echo $_SESSION['message_bad']; unset($_SESSION['message_bad']); ?>
+        </div>
+    </div>
+    <?php endif; ?>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-login">
@@ -144,7 +158,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="login-form" action="https://phpoll.com/login/process" method="post" role="form" style="display: block;">
+                            <form id="login-form" action="login.php" method="post" role="form" style="display: block;">
                                 <div class="form-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                 </div>
@@ -159,7 +173,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
+                            <form id="register-form" action="register.php" method="post" role="form" style="display: none;">
                                 <div class="form-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                 </div>

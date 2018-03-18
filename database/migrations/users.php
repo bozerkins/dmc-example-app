@@ -28,3 +28,7 @@ touch($instructionFileDestination);
 chmod($instructionFileDestination, 0777);
 # write the contents
 file_put_contents($instructionFileDestination, $instructions);
+
+# create table
+$table = Table::newFromInstructionsFile($instructionFileDestination);
+$table->storage()->create();
