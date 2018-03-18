@@ -9,6 +9,7 @@ $table = new Table();
 $table->addColumn('ID', TableHelper::COLUMN_TYPE_INTEGER);
 $table->addColumn('Title', TableHelper::COLUMN_TYPE_STRING, 255);
 $table->addColumn('Completed', TableHelper::COLUMN_TYPE_INTEGER);
+$table->addColumn('UserReference', TableHelper::COLUMN_TYPE_INTEGER);
 
 $structure = var_export($table->structure(), true);
 $location = __DIR__ . '/../../data/todos';

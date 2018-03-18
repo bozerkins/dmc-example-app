@@ -23,5 +23,12 @@ return [
     'type' => 1,
     'size' => 4,
   ),
+  3 => 
+  array (
+    'id' => 4,
+    'name' => 'UserReference',
+    'type' => 1,
+    'size' => 4,
+  ),
 )
 ];
