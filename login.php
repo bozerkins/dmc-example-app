@@ -7,6 +7,7 @@ require_once __DIR__ . '/bootstrap.php';
 session_start();
 
 $username = array_key_exists('username', $_REQUEST) ? $_REQUEST['username'] : null;
+$password = array_key_exists('password', $_REQUEST) ? $_REQUEST['password'] : null;
 
 if ($username === null) {
     echo 'empty username';
@@ -26,13 +27,14 @@ try {
     if ($user === null) {
         $_SESSION['message_bad'] = 'Authentication error';
         header('Location: index.php');
-        return;
+        exit;
     }
-    echo 'omg. user exists';exit;
+    // set user
+    $_SESSION['user_id'] = $user['ID'];
+    // redirect
+    header('Location: app/index.php');
+    exit;
 } catch (\Exception $ex) {
     echo 'Unexpected error';
     exit;
 }
-
-print_r($_REQUEST);
-exit;

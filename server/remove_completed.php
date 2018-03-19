@@ -7,10 +7,11 @@ require_once __DIR__ . '/../bootstrap.php';
 $user = initializeUserOrExit();
 
 $todos = Table::newFromInstructionsFile(__DIR__ . '/../database/instructions/todos.php');
-$result = $todos->read(function($record) use ($user) {
-    if ($record['UserReference'] === $user['Reference']) {
-        return Table::OPERATION_READ_INCLUDE;
+
+$todos->delete(function($record) use ($user) {
+    if ($record['UserReference'] === $user['Reference'] && $record['Completed'] === 1) {
+        return Table::OPERATION_UPDATE_INCLUDE;
     }
 });
 
-sendOk($result);
+sendOk([]);

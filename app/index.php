@@ -1,8 +1,19 @@
+<?php
+
+require_once __DIR__ . '/../bootstrap.php';
+
+$user = initializeUser();
+if ($user === null) {
+    $_SESSION['message_bad'] = 'Not authenticated';
+    header('Location: index.php');
+    exit;
+}
+?>
 <!doctype html>
 <html lang="en" data-framework="jquery">
 	<head>
 		<meta charset="utf-8">
-		<title>jQuery • TodoMVC</title>
+		<title>Todo App | Integrated with Data Management Components</title>
 		<link rel="stylesheet" href="../node_modules/todomvc-common/base.css">
 		<link rel="stylesheet" href="../node_modules/todomvc-app-css/index.css">
 		<link rel="stylesheet" href="../css/app.css">
@@ -21,19 +32,19 @@
 			<footer id="footer"></footer>
 		</section>
 		<footer id="info">
+            <p>Logged in as <b><?=$user['Username']; ?></b></p>
 			<p>Double-click to edit a todo</p>
-			<p>Created by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
-			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+			<p><a href="../logout.php">logout</a></p>
 		</footer>
 		<script id="todo-template" type="text/x-handlebars-template">
 			{{#this}}
-			<li {{#if completed}}class="completed"{{/if}} data-id="{{id}}">
+			<li {{#eq Completed 1 }}class="completed"{{/eq}} data-id="{{ID}}">
 				<div class="view">
-					<input class="toggle" type="checkbox" {{#if completed}}checked{{/if}}>
-					<label>{{title}}</label>
+					<input class="toggle" type="checkbox" {{#eq Completed 1 }}checked{{/eq}}>
+					<label>{{Title}}</label>
 					<button class="destroy"></button>
 				</div>
-				<input class="edit" value="{{title}}">
+				<input class="edit" value="{{Title}}">
 			</li>
 		{{/this}}
 		</script>

@@ -6,13 +6,11 @@ use DataManagement\Model\EntityRelationship\Table;
 use DataManagement\Model\TableHelper;
 
 $table = new Table();
-$table->addColumn('ID', TableHelper::COLUMN_TYPE_INTEGER);
-$table->addColumn('Username', TableHelper::COLUMN_TYPE_STRING, 100);
-$table->addColumn('Password', TableHelper::COLUMN_TYPE_STRING, 40 );
-$table->addColumn('CreatedAt', TableHelper::COLUMN_TYPE_STRING, 20);
+$table->addColumn('table', TableHelper::COLUMN_TYPE_STRING, 100);
+$table->addColumn('last_id', TableHelper::COLUMN_TYPE_INTEGER);
 
 $structure = var_export($table->structure(), true);
-$location = __DIR__ . '/../../data/users';
+$location = __DIR__ . '/../../data/ids';
 
 $instructions = <<<EOT
 <?php
@@ -21,7 +19,7 @@ return [
     'structure' => {$structure}
 ];
 EOT;
-$instructionFileDestination = __DIR__ . '/../instructions/users.php';
+$instructionFileDestination = __DIR__ . '/../instructions/ids.php';
 # create the file
 touch($instructionFileDestination);
 # make it writable by everyone
