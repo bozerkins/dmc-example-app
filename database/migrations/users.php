@@ -8,7 +8,7 @@ use DataManagement\Model\TableHelper;
 $table = new Table();
 $table->addColumn('ID', TableHelper::COLUMN_TYPE_INTEGER);
 $table->addColumn('Username', TableHelper::COLUMN_TYPE_STRING, 100);
-$table->addColumn('Password', TableHelper::COLUMN_TYPE_STRING, 40 );
+$table->addColumn('Password', TableHelper::COLUMN_TYPE_STRING, 200 );
 $table->addColumn('CreatedAt', TableHelper::COLUMN_TYPE_STRING, 20);
 
 $structure = var_export($table->structure(), true);

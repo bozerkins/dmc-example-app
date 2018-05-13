@@ -21,7 +21,7 @@ return [
     'id' => 3,
     'name' => 'Password',
     'type' => 3,
-    'size' => 40,
+    'size' => 200,
   ),
   3 => 
   array (

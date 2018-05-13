@@ -44,7 +44,7 @@ try {
     $user = [];
     $user['ID'] = getNextId('users');
     $user['Username'] = $username;
-    $user['Password'] = sha1($password);
+    $user['Password'] = password_hash($password, PASSWORD_BCRYPT);
     $user['CreatedAt'] = date('Y-m-d H:i:s');
     $users->create($user);
 

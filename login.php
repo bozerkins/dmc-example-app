@@ -15,8 +15,8 @@ if ($username === null) {
 }
 try {
     $users = Table::newFromInstructionsFile(__DIR__ . '/database/instructions/users.php');
-    $result = $users->read(function($record) use ($username) {
-        if ($record['Username'] === $username) {
+    $result = $users->read(function($record) use ($username, $password) {
+        if ($record['Username'] === $username && password_verify($password,$record['Password'])) {
             return Table::OPERATION_READ_INCLUDE_AND_STOP;
         }
     });
